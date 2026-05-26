@@ -48,19 +48,19 @@ This skill is focused on the **process of architectural design and implementatio
 
 Most AI coding agents can install skills for you. Clone or download this repo, then open your agent and say:
 
-> Add the skill in the `layered-design/` folder of this repo.
+> Add the skill in the `skills/layered-design/` folder of this repo.
 
 Your agent knows where its own skills directory lives and will copy it to the right place. This works for opencode, Claude Code, Google Antigravity CLI, Mistral Vibe, and any other [Agent Skills](https://agentskills.io)-compatible tool.
 
 ### The manual way: per-tool paths
 
-If you prefer to install manually, copy the `layered-design/` folder into your tool's skills directory:
+If you prefer to install manually, copy the `skills/layered-design/` folder into your tool's skills directory:
 
 | Tool | Project-level | Global |
 |------|--------------|--------|
 | **opencode** | `.opencode/skills/` | `~/.config/opencode/skills/` |
 | **Claude Code** | `.claude/skills/` | `~/.claude/skills/` |
-| **Google Antigravity CLI (`agy`)** | `.gemini/skills/` or `.agents/skills/` | `~/.gemini/skills/` or `~/.agents/skills/` |
+| **Google Antigravity CLI (`agy`)** | `.gemini/plugins/` | `~/.gemini/antigravity-cli/plugins/` |
 | **Mistral Vibe** | `.vibe/skills/` | `~/.vibe/skills/` |
 
 For any other tool following the [Agent Skills specification](https://agentskills.io/specification), the pattern is the same:
@@ -72,18 +72,29 @@ For any other tool following the [Agent Skills specification](https://agentskill
 ### Install from Git (Gemini CLI)
 
 ```bash
-gemini skills install https://github.com/antquinonez/layered-design-skill.git --path layered-design
+gemini skills install https://github.com/antquinonez/layered-design-skill.git --path skills/layered-design
 ```
 
 ### Install from Git (Antigravity CLI / `agy`)
 
-`agy` does not yet have a `skills install` command. Use the manual copy method above, placing the skill in `.agents/skills/layered-design/` (project-level) or `~/.agents/skills/layered-design/` (global).
+Since `ff-design-skill` is structured as a valid Antigravity plugin, you can install it globally by cloning the repository directly into your plugins directory:
+
+```bash
+git clone https://github.com/antquinonez/layered-design-skill.git ~/.gemini/antigravity-cli/plugins/ff-design-skill
+```
+
+Or you can use `agy`'s built-in plugin subcommands if preferred.
 
 ## Skill structure
 
 ```
-layered-design/
-└── SKILL.md       # Metadata + full instructions
+ff-design-skill/
+├── plugin.json
+├── LICENSE
+├── README.md
+└── skills/
+    └── layered-design/
+        └── SKILL.md
 ```
 
 ## License
